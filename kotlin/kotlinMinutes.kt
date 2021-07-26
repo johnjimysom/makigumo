@@ -9,13 +9,13 @@ fun describeString(maybeString: String?): String {
 class Customer
 class Contact(val id: Int, var email: String)
 
-
+/*
 fun main() {
     val customer = Customer()                   // class customer
     val contact = Contact(1, "mary@gmail.com")  // Contact class create an email for mary for example
     println(contact.id) // 5
     println(contact.email)
-    contact.email = "jane@gmail.com"            // 6 jane@gmail.com create
+    contact.email = "jane@gmail.com"            // 6 jane@gmail.com and it updates the property of email
 
 
     //using fun describeString()
@@ -71,7 +71,7 @@ fun main() {
     println(e)   // 2
 
 }//end of main fun are you satisfied with Kotlin yet??
-
+*/
 
 //classes in Kotlin
 /*
@@ -88,3 +88,36 @@ fun main() {
     antihistorians.name ="stankY"
 }//end this main about classes
 */
+
+
+class MutableStack<E>(vararg items:E){ //defines the generic class MutableStack<E> where is called the generic type parameter. At use-site, it is assigned to specific type such as Int by declaring a MutableStack<Int>
+    private val elements = items.toMutableList()
+    fun push(element: E) = elements.add(element) //inside a generic class "E" can be use as a parameter like any other type
+    fun peek(): E = elements.last()
+    fun pop(): E = elements.removeAt(elements.size -1)
+    fun isEmpty() = elements.isEmpty()
+    fun size() = elements.size
+
+    override fun toString() = "MutableStack(${elements.joinToString()})"
+}//end class MutableStack
+
+//mutableStackOf = stack2
+fun <E> mutableStackOf(vararg elements: E) = MutableStack(*elements)
+
+fun main() {
+    val stack = MutableStack(0.69, 4.20, 9.9)
+    stack.push(999.1)
+    println(stack)
+
+    println("peek(): ${stack.peek()}")
+    println(stack)// should able to see 999.1
+
+    for (i in 1..stack.size()){
+        println("pop(): {$stack.pop()}")
+        println(stack)
+    }//end for loop println the whole stack
+
+    val stack2 = mutableStackOf(0.62, 3.14, 2.7)
+    println(stack2)
+
+}//end main() for generic classes
