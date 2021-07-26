@@ -1,0 +1,33 @@
+fun double (x: Int):Int {
+    return 2 * x
+}
+
+val result = double (2)
+
+//call a member functions uses a '.'
+// for example Stream().read(), this creates  instance of a  class called Stream an call read()
+
+fun powerOf(number: Int, exponent: Int): Int {/*...*/ return 0} //needs a return value.
+
+fun powerOf2(
+    number: Int,
+    exponent: Int, // trailing comma
+) { /*...*/ return }
+
+fun read(
+    b: ByteArray,
+    off: Int =0,
+    len: Int = b.size,
+){/*...*/}
+
+//overriding methods only on inherited classes
+/*open Class A
+    open fun foo(i:Int = 10)
+    { /*Class*/
+}
+
+class B : A(){
+    override fun foo(I: Int){/**/}
+} */
+
+//next sections of functions in Kotlin
