@@ -1,3 +1,4 @@
+/*
 fun describeString(maybeString: String?): String {
     if (maybeString != null && maybeString.length > 0) {
         return "String of Length ${maybeString.length}"
@@ -5,7 +6,7 @@ fun describeString(maybeString: String?): String {
         return "Empty or null string"
     }
 }
-
+*/
 class Customer
 class Contact(val id: Int, var email: String)
 
@@ -90,6 +91,8 @@ fun main() {
 */
 
 
+//MUTABLE STACKS for GENERIC CLASSES AND FUNCTIONS
+/*
 class MutableStack<E>(vararg items:E){ //defines the generic class MutableStack<E> where is called the generic type parameter. At use-site, it is assigned to specific type such as Int by declaring a MutableStack<Int>
     private val elements = items.toMutableList()
     fun push(element: E) = elements.add(element) //inside a generic class "E" can be use as a parameter like any other type
@@ -103,6 +106,12 @@ class MutableStack<E>(vararg items:E){ //defines the generic class MutableStack<
 
 //mutableStackOf = stack2
 fun <E> mutableStackOf(vararg elements: E) = MutableStack(*elements)
+/*
+* You can also generify functions if their logic is independent of a specific type. For instance, you can write a utility function to create mutable stacks:
+* Note that the compiler can infer the generic type from the parameters of mutableStackOf so that you don't have to write mutableStackOf<Double>(...).
+*
+* */
+//generic functions
 
 fun main() {
     val stack = MutableStack(0.69, 4.20, 9.9)
@@ -121,3 +130,68 @@ fun main() {
     println(stack2)
 
 }//end main() for generic classes
+*/
+
+
+// INHERITANCE
+// Kotlin fully supports the traditional object-oriented inheritance mechanism.
+open class Dog{ //Kotlin classes are final by default. If you want to allow the class inheritance, mark the class with the 'open' modifier.
+    open fun sayHello(){ //Kotlin methods are also final by default. As with the classes, the open modifier allows overriding them.
+        println("wauw wauw")
+    }
+}
+
+class Collie: Dog(){ //A class inherits a superclass when you specify the : SuperclassName() after its name. The empty parentheses () indicate an invocation of the superclass default constructor.
+    override fun sayHello(){ //Overriding methods or attributes requires the override modifier.
+        println("wOOf wif")
+    }
+}
+
+class Puppers: Dog(){
+    override fun sayHello(){
+        println("wauw wauw")
+    }
+}
+
+
+/*
+//Inheritance with Parameterized Constructor
+open class alterEGO(val origin: String){
+    open fun sayHello2(){
+        println("An alter-ego from $origin says: GAOOOOoo!")
+    }
+}
+
+//If you want to use a parameterized constructor of the superclass when creating a subclass, provide the constructor arguments in the subclass declaration.
+class SakuraFIVE: alterEGO("the SAKURA FIVE")//kingprotea
+
+
+fun main(){
+    /*
+    val dog: Dog = Collie()
+    dog.sayHello()
+
+    val dog2: Dog = Puppers()
+    println(dog2.sayHello())//calls out a KotlinUnit so you can omit the 'println' function
+    */
+
+    val king_protea: SakuraFIVE = SakuraFIVE()
+    king_protea.sayHello2()
+}
+
+*/
+
+//Passing Constructor Arguments to Superclass
+open class Sakura5(val name: String, val origin:String, val noblePhantasm:String){ //create a constructor
+    fun sayHello(){
+        println("$name, an $origin from the Sakura Five says: $noblePhantasm")//Sarasvati Meltout, Meltlilith
+    }
+}
+
+class alterEGO(name:String) : Sakura5(name = name, origin = "Alter Ego", noblePhantasm = "\"Sarasvati Meltout!\"")
+
+fun main(){
+    val Meltlilith: Sakura5 = alterEGO("Meltlilith")
+    Meltlilith.sayHello()
+
+}
