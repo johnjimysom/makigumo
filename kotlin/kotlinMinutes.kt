@@ -188,10 +188,14 @@ open class Sakura5(val name: String, val origin:String, val noblePhantasm:String
     }
 }
 
+//name in the 'alterEGO' declaration is neither a var nor val: it's a constructor argument, whose value is passed to the name property of the superclass 'Sakura5'.
 class alterEGO(name:String) : Sakura5(name = name, origin = "Alter Ego", noblePhantasm = "\"Sarasvati Meltout!\"")
 
+
+//Creates an 'alterEGO' instance with the name 'Meltlilith'. The call invokes the Sakura5 constructor with arguments "Meltlilith" and "Alter Ego".
 fun main(){
     val Meltlilith: Sakura5 = alterEGO("Meltlilith")
     Meltlilith.sayHello()
 
 }
+
