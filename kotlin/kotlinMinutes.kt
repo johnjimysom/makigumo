@@ -181,6 +181,8 @@ fun main(){
 
 */
 
+
+/*
 //Passing Constructor Arguments to Superclass
 open class Sakura5(val name: String, val origin:String, val noblePhantasm:String){ //create a constructor
     fun sayHello(){
@@ -193,9 +195,188 @@ class alterEGO(name:String) : Sakura5(name = name, origin = "Alter Ego", noblePh
 
 
 //Creates an 'alterEGO' instance with the name 'Meltlilith'. The call invokes the Sakura5 constructor with arguments "Meltlilith" and "Alter Ego".
-fun main(){
+fun main() {
     val Meltlilith: Sakura5 = alterEGO("Meltlilith")
     Meltlilith.sayHello()
 
+}//end main
+
+*/
+
+//WHEN, WHEN STATEMENTS
+/*
+fun main(){
+    cases("Hello")
+    cases(1)
+    cases(0L)
+    cases(myClass())
+    cases("hello")
 }
 
+fun cases (obj: Any){
+    when(obj){ //this is a when statement
+        1 -> println("one") //checks whether 1 or (obj: 1) equals to "one", which it should in this case so it will display "one"
+        "Hello" -> println("greeting") //checks whether (obj: "Hello") equals "Hello"; case sensitive so this will pass
+        is Long -> println("Long") //type checking
+        !is String -> println("Not a String") //inverse type checking
+        else -> println("Unknown")//default statement (might be omitted)
+    }//end when
+}//end fun cases
+
+class myClass
+*/
+
+/*
+//WHEN EXPRESSION
+fun main() {
+    println(whenAssign("Hello"))
+    println(whenAssign(3.4))
+    println(whenAssign(1))
+    println(whenAssign(69))
+    println(whenAssign(MyClass()))
+}//end main, call the function whenAssign()
+
+fun whenAssign(obj: Any): Any {
+    val result = when (obj) {                   // 1
+        1 -> "one"                              // 2
+        "Hello" -> 1                            // 3
+        is Long -> false                        // 4 Sets the value to false if obj is an instance of Long
+        is Byte -> false
+        69 -> "\"69, NICE\""
+        else -> "SuCKity"                              // 5 Sets the value "42" if none of the previous conditions are satisfied. Unlike in when statement, the default branch is usually required in when expression, except the case when the compiler can check that other branches cover all possible cases.
+    }
+    return result
+}
+
+class MyClass //create a random class
+
+//END WHEN EXPRESSION
+*/
+
+//LOOPS IN KOTLIN
+//for, while, do-while
+
+/*
+//for (beginners)
+fun main(args: Array<String>){
+    val passionlip = listOf("Durga", "Brynhildr", "Parvati")
+
+    for (servants in passionlip){ //Loops through each cake in the list., 'servants' should be the name thats contents of the lists
+        println("Passionlip takes part from $servants")
+    }
+}
+*/
+
+/*
+//while and do while
+fun trashAndCrash() = println("TRASH AND CRUSH")
+fun breastValley() = println("BREAST VALLEY")
+fun masochisticConstitution() = println("MASOCHISTIC CONSTITUTION") // easier with 2 methods
+
+fun main(args: Array<String>){
+    var skill1 = 0
+    var skill2 = 0
+    var skill3 = 0
+
+    while (skill1 < 3){ //Executes the block while the condition is true
+        trashAndCrash()
+        skill1 ++
+    }
+
+    do { // Executes the block first and then checking the condition.
+        breastValley()
+        masochisticConstitution() //omit these optional
+        skill2++
+        skill3++ //omit these
+    } while (skill2 < skill1) //skill3 < skill2
+}
+
+ */
+
+
+
+/*
+//Iterators
+class SakuraFIVE(val name: String)
+
+class alterEGO(val servant: List<SakuraFIVE>) {
+
+    operator fun iterator(): Iterator<SakuraFIVE> {             // 1 Defines an 'iterator' in a class. It must be named iterator and have the 'operator' modifier.
+        return servant.iterator()                           // 2
+        /*
+        * Returns the iterator that meets the following method requirements:
+        *   - next(): Animal
+        *   - hasNext(): Boolean
+        *
+        * */
+    }
+}
+
+fun main() {
+
+    val alterego = alterEGO(listOf(SakuraFIVE("Kingprotea"), SakuraFIVE("Violet")))
+
+    for (servant in alterego) {                                   // 3 Loops through 'servant' in the 'alterego' with the user-defined iterator.
+        println("Watch out, it's ${servant.name}")
+    }
+}// end main
+*/
+
+//RANGES
+/*
+fun main(){
+    for (i in 0..3){ //Iterates over a range starting from 0 up to 3 (inclusive). Like 'for(i=0; i<=3; ++i)' in other programming languages (C/C++/Java).
+        print(i)
+    }
+    print(" ")
+
+    for (i in 0 until 5){ // Iterates over a range starting from 0 up to 3 (exclusive). Like for loop in Python or like 'for(i=0; i<3; ++i)' in other programming languages (C/C++/Java).
+        print(i)
+    }
+    print(" ")
+
+    for (i in 2..10 step 2){ //Iterates over a range with a custom increment step for consecutive elements.
+        print(i)
+    }
+    print(" ")
+
+    for (i in 3 downTo 0){ //Iterates over a range in reverse order.
+        print(i)
+    }
+    print(" ")
+}
+*/
+
+/*
+//Char ranges supported in Kotlin
+fun main(){
+    for (c in 'a'..'f'){ // Iterates over a char range in alphabetical order.
+        print(c)
+    }
+    print(" ")
+
+    for (c in 'z' downTo 'j' step 3){ // Char ranges support step and downTo as well.
+        print(c)
+    }
+    print(" ")
+}//end main
+*/
+
+// Ranges in 'if' statements
+//fun main(){
+//    val x = 1
+//    if (x in 2..6){ //Checks if a value is in the range
+//        print("x is range from 2 to 6")
+//    }
+//    println()
+//
+//    if (x !in 7..11){ //!in is the opposite of in
+//        print("x is not in range of 7 to 11")
+//
+//    }
+//}
+
+
+//EQUALITY CHECKS
+//Kotlin uses == for structural comparison and === for referential comparison.
+//More precisely, a == b compiles down to if (a == null) b == null else a.equals(b).
